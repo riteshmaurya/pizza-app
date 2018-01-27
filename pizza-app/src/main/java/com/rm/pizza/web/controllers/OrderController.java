@@ -82,7 +82,6 @@ public class OrderController {
 	
 	@RequestMapping(value={"/findAll","/back"}, method=RequestMethod.GET)
 	public String findAllPizzaOrder(@ModelAttribute("order") OrderMaster order, Model model, Authentication auth){
-		System.out.println(auth.getAuthorities());
 		if(auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))){
 			model.addAttribute("orders", orderRepository.findAll(new Sort("orderDate")));
 		}else{ 

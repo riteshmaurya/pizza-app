@@ -35,13 +35,9 @@ public class OrderServicesImpl implements OrderServices {
 		order.setOrderDate(new Date());
 		order.getPizzas().add(pizza);
 		order.setStatus(PizzaConstants.OrderStatus.CREATED);
-		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-		System.out.println(pizza.getQuantity());
 		order.setTotalItems(pizza.getQuantity());
 		order.setDeliveryAddress(user.getDeliveryAddress());
 		order.setTotalPrice(pizza.getUnitPrice().multiply(BigDecimal.valueOf(pizza.getQuantity())));
-		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-		System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		order.setUser(user);
 		
 		orderRepository.saveAndFlush(order);

@@ -40,7 +40,6 @@ public class ManageOrdersController {
 	
 	@RequestMapping(value={"/findAll","/back"}, method=RequestMethod.GET)
 	public String findAllPizzaOrder(@ModelAttribute("order") OrderMaster order, Model model, Authentication auth){
-		System.out.println(auth.getAuthorities());
 		if(auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))){
 			model.addAttribute("orders", orderRepository.findAll(new Sort("orderDate")));
 		}else{ 
@@ -66,8 +65,6 @@ public class ManageOrdersController {
 		this.order = order;
 		
 		model.addAttribute("pizzas", order.getPizzas());
-		System.out.println("DDDDDDDDDDSSSSSSSSSSSSSS");
-		//System.out.println(this.order.getPizzas().get(0));
 		return "itemDetails";
 	}
 

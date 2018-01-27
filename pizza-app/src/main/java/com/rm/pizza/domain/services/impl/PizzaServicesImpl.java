@@ -35,11 +35,7 @@ public class PizzaServicesImpl implements PizzaServices {
 			totalPrice = totalPrice.add(PizzaConstants.PizzaSize.MEDIUM.price);
 		}if (pizza.getPizzaSize().equalsIgnoreCase(PizzaConstants.PizzaSize.LARGE.toString())) {
 			totalPrice = totalPrice.add(PizzaConstants.PizzaSize.LARGE.price);
-		} /*else {
-			totalPrice = PizzaConstants.pizzaSizeMinPrice;
-		}*/
-		//Price calculation based on pizza size
-		System.out.println("calculatePriceBySize: "+totalPrice);
+		} 
 		return totalPrice;
 	}
 
@@ -51,7 +47,6 @@ public class PizzaServicesImpl implements PizzaServices {
 						.add(calculatePriceByBase(pizza).add(calculatePriceByToppings(pizza)));
 		pizza.setUnitPrice(totalPrice);
 		//totalPrice = totalPrice.multiply(BigDecimal.valueOf(pizza.getQuantity()));
-		System.out.println("calculateTotalPrice: "+totalPrice);
 		return totalPrice;
 	}
 
@@ -63,10 +58,7 @@ public class PizzaServicesImpl implements PizzaServices {
 			totalPrice = totalPrice.add(PizzaConstants.PizzaBase.THIN.price);
 		} if(pizza.getPizzaBase().equalsIgnoreCase(PizzaConstants.PizzaBase.THICK.toString())) {
 			totalPrice = totalPrice.add(PizzaConstants.PizzaBase.THICK.price);
-		} /*else {
-			totalPrice = PizzaConstants.pizzaSizeMinPrice;
-		}*/
-		System.out.println("calculatePriceByBase: "+totalPrice);
+		} 
 		return totalPrice;
 	}
 
@@ -83,7 +75,6 @@ public class PizzaServicesImpl implements PizzaServices {
 		}if(pizza.getToppingMushroom()) {
 			totalPrice = totalPrice.add(PizzaConstants.PizzaToppings.TOPPING_MUSHROOM.price);
 		}
-		System.out.println("calculatePriceByToppings: "+totalPrice);
 		return totalPrice;
 	}
 
