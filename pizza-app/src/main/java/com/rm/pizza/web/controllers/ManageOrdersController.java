@@ -2,6 +2,7 @@ package com.rm.pizza.web.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
@@ -71,6 +72,7 @@ public class ManageOrdersController {
 
 	
 	@RequestMapping(value="/cancel")
+	@PreAuthorize(value="hasRole('ROLE_ADMIN')")
 	public String cancelPizzaOrder(@ModelAttribute("order") OrderMaster order, Model model){
 		orderServices.cancelOrder(this.order);
 		model.addAttribute("orders", orderRepository.findAll(new Sort("orderDate")));
@@ -78,6 +80,7 @@ public class ManageOrdersController {
 	}
 	
 	@RequestMapping(value="/process")
+	@PreAuthorize(value="hasRole('ROLE_ADMIN')")
 	public String processPizzaOrder(@ModelAttribute("order") OrderMaster order, Model model){
 		orderServices.processOrder(this.order);
 		model.addAttribute("orders", orderRepository.findAll(new Sort("orderDate")));
@@ -85,6 +88,7 @@ public class ManageOrdersController {
 	}
 	
 	@RequestMapping(value="/complete")
+	@PreAuthorize(value="hasRole('ROLE_ADMIN')")
 	public String completePizzaOrder(@ModelAttribute("order") OrderMaster order, Model model){
 		orderServices.completeOrder(this.order);
 		model.addAttribute("orders", orderRepository.findAll(new Sort("orderDate")));
