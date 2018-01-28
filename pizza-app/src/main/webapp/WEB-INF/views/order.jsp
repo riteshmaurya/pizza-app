@@ -33,7 +33,6 @@
 <script
 	src="<spring:url value="/resources/js/bootstrap-multiselect.js"/>"></script>
 <script src="<c:url value="/resources/js/global.js"/>"></script>
-<script src="<spring:url value="/resources/js/appointments.js"/>"></script>
 <script>
 	var root = "${pageContext.request.contextPath}";
 </script>
@@ -54,12 +53,18 @@
 			<li class="list-group-item">
 				<a class="btn btn-default" 
 					href="<spring:url value="/order/back"/>" role="button">Back</a>
+				<c:if test="${(order.status ne 'CANCEL') and (order.status ne 'COMPLETED')}">
 				<a class="btn btn-default" 
 					href="<spring:url value="/order/cancel"/>" role="button">Cancel</a>
+				</c:if>
+				<c:if test="${(order.status ne 'CANCEL') and  (order.status ne 'COMPLETED') and (order.status ne 'PROCESSING')}">	
 				<a class="btn btn-default" 
 					href="<spring:url value="/order/process"/>" role="button">Process</a>
+				</c:if>
+				<c:if test="${(order.status ne 'CREATED') and  (order.status eq 'PROCESSING') and  (order.status ne 'CANCEL') and (order.status ne 'COMPLETED')}">	
 				<a class="btn btn-default" 
 					href="<spring:url value="/order/complete"/>" role="button">Mark Complete</a>
+				</c:if>	
 			</li>
 		</ul>
 	</div>

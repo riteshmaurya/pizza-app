@@ -51,7 +51,7 @@ public class OrderController {
 	@RequestMapping(value="/add",method=RequestMethod.GET )
 	public String addPizzaOrder(Model model) {
 		model.addAttribute("pizza", new Pizza());
-		return "orderPizza";
+		return "startOrder";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
