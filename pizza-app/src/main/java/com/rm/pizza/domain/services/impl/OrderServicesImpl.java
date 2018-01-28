@@ -3,9 +3,12 @@ package com.rm.pizza.domain.services.impl;
 import java.math.BigDecimal;
 import java.util.Date;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rm.pizza.domain.constants.PizzaConstants;
 import com.rm.pizza.domain.constants.PizzaConstants.OrderStatus;
@@ -30,6 +33,7 @@ public class OrderServicesImpl implements OrderServices {
 	private PizzaRepository pizzaRepository;
 
 	@Override
+	@Transactional
 	public OrderMaster createOrder(Pizza pizza, AutoUser user) {
 		OrderMaster order = new OrderMaster();
 		order.setOrderDate(new Date());
@@ -46,6 +50,7 @@ public class OrderServicesImpl implements OrderServices {
 	}
 
 	@Override
+	@Transactional
 	public void cancelOrder(OrderMaster order) {
 		
 		order.setStatus(OrderStatus.CANCEL);
@@ -53,6 +58,7 @@ public class OrderServicesImpl implements OrderServices {
 	}
 
 	@Override
+	@Transactional
 	public void completeOrder(OrderMaster order) {
 		order.setStatus(OrderStatus.COMPLETED);
 		orderRepository.saveAndFlush(order);
@@ -60,6 +66,7 @@ public class OrderServicesImpl implements OrderServices {
 	}
 
 	@Override
+	@Transactional
 	public void processOrder(OrderMaster order) {
 		order.setStatus(OrderStatus.PROCESSING);
 		orderRepository.saveAndFlush(order);	
